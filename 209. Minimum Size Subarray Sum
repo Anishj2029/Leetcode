@@ -1,0 +1,38 @@
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int n = nums.length;
+	    
+	    int i = 0;
+	    int j = i;
+	    
+	    int sum = 0;
+
+	    
+	    int len;
+	    int minlen = 9999999;
+		
+		while(j < nums.length){
+
+    if(sum < target){
+
+        sum += nums[j];
+        j++;
+
+    }
+
+    while(sum >= target){
+
+        len = j - i;
+        minlen = Math.min(minlen, len);
+
+        sum -= nums[i];
+        i++;
+    }
+}
+		if(minlen == 9999999){
+            return 0;
+        }else{
+            return minlen;
+        }
+    }
+}
