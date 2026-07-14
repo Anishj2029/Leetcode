@@ -1,0 +1,31 @@
+class Solution {
+    public int longestSubarray(int[] nums) {
+        int deletecount = 0;
+		int k = 1;
+		
+		int i = 0;
+		int j = 0;
+		
+		int len;
+		int maxlen = 0;
+		
+		while(j < nums.length){
+		    if(nums[j] == 0){
+		        deletecount++;
+		    }
+		    while(deletecount > 1){
+		        if(nums[i] == 0){
+		            deletecount--;
+		        }
+		        i++;
+		    }
+		    if(deletecount <= 1){
+		        len = j - i;
+		        maxlen = Math.max(maxlen, len);
+		        j++;
+		    }
+		    
+		}
+		return maxlen;
+    }
+}
