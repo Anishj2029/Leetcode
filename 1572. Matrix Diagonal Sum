@@ -1,0 +1,27 @@
+class Solution {
+    public int diagonalSum(int[][] mat) {
+        HashSet <Integer > ans = new HashSet<>();
+        int n = mat.length;
+        
+        int sum = 0;
+        for(int i = 0; i <= mat.length - 1 ; i++){
+            if(!ans.contains(i * n + i)){
+                sum = sum + mat[i][i];
+                System.out.println(sum);
+                ans.add(i * n + i);
+            }
+        }
+
+        
+        for(int i = 0; i < mat.length; i++){
+            int j = mat.length - 1 - i;
+                 if(!ans.contains(i * n + j)){
+                    sum = sum + mat[i][j];
+                    System.out.println(sum);
+                    ans.add(i * n + j);
+            }
+    }
+    return sum;
+	}
+    
+}
