@@ -1,0 +1,36 @@
+class Solution {
+    public String reverseWords(String s) {
+
+        String p = s.trim();
+        int j = p.length();
+        StringBuilder ans = new StringBuilder();
+
+        for (int i = p.length() - 1; i >= 0; i--) {
+
+            if (p.charAt(i) == ' ' || i == 0) {
+
+                if (i == 0) {
+                    ans.append(p.substring(0, j));
+                    break;
+                } else {
+                    ans.append(p.substring(i + 1, j));
+                    ans.append(' ');
+                }
+
+   
+                while (i >= 1 && p.charAt(i) == ' ') {
+                    i--;
+                }
+
+                j = i + 1;
+
+                if (i == 0) {
+                    ans.append(p.substring(0, j));
+                    break;
+                }
+            }
+        }
+
+        return ans.toString();
+    }
+}
