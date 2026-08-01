@@ -1,0 +1,44 @@
+class NumArray {
+    int[] prefix;
+    int answer;
+    
+    public NumArray(int[] nums) {
+        prefix = new int[nums.length];
+        int[] answer = new int[nums.length];
+
+        prefix[0] = nums[0];
+        for(int i = 1; i < prefix.length ; i++){
+            prefix[i] = prefix[ i - 1] + nums[i];
+        }
+       
+        
+    }
+    
+    public int sumRange(int left, int right) {
+        if(left < right){
+            
+            if(left == 0){
+                answer = prefix[right];
+            }
+            else{
+                answer= prefix[right] - prefix[left - 1];
+            }
+        }
+        if(left == right){
+            if(left == 0){
+                return prefix[left];
+            }else{
+                 return prefix[left]- prefix[left - 1];
+            }
+           
+        }
+       
+        return answer;
+    }
+}
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * NumArray obj = new NumArray(nums);
+ * int param_1 = obj.sumRange(left,right);
+ */
