@@ -13,3 +13,27 @@ class Solution {
 		}
     }
 }
+
+
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int slow = 0;
+        int fast;
+
+        while(slow < nums.length){
+            if(nums[slow] == 0){
+                fast = slow;
+               while(fast < nums.length){
+                if(nums[fast] != 0){
+                    int temp = nums[fast];
+                    nums[fast] = nums[slow];
+                    nums[slow] = temp;
+                    break;
+                }
+                fast++;
+               }
+            }
+            slow++;
+        }        
+    }
+}
