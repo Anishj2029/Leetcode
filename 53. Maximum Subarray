@@ -22,3 +22,28 @@ public:
         return max;
     }
 };
+
+class Solution {
+    public int maxSubArray(int[] nums) {
+         
+         int n = nums.length;
+         int maxsum = -99999;
+         int sum = 0;
+         int slow = 0;
+         int fast = slow;
+
+         while(slow < n && fast < n){
+            sum = sum + nums[fast];
+            if(sum < 0){
+                maxsum = Math.max(maxsum, sum);
+                slow++;
+                sum = 0;
+                fast = slow;
+            }else{
+                fast++;
+                maxsum = Math.max(maxsum, sum);
+            }
+         }
+         return maxsum;
+    }
+}
