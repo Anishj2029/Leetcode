@@ -12,23 +12,17 @@ class Solution {
 
     public List<String> decode(String str) {
         List<String> res = new ArrayList<>();
-        StringBuilder sb = new StringBuilder(str);
-        
         int i = 0;
-        
 
         while(i < str.length()){
             int j = i;
-            while(sb.charAt(j) != '#'){
+            while(str.charAt(j) != '#'){
                 j++;
             }
             int length = Integer.parseInt(str.substring(i, j));
             j++;
-            StringBuilder temp = new StringBuilder();
-            for(int k = j ; k < j + length  ; k++){
-                temp.append(sb.charAt(k));
-            }
-            res.add(temp.toString());
+            String temp = str.substring(j, j + length);
+            res.add(temp);
             i = j + length;
         }
         return res;
