@@ -24,3 +24,33 @@ class Solution {
         return max;
     }
 }
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int i = 0;
+        int j = 0;
+        int count = 0;
+        int maxcount = 0;
+        HashSet<Character> set = new HashSet<>();
+
+        while(j < s.length()){
+            if(!set.contains(s.charAt(j))){
+                set.add(s.charAt(j));
+                count++;
+                if(count > maxcount){
+                    maxcount = count;
+                }
+                j++;
+            }else{
+                while(s.charAt(i) != s.charAt(j)){
+                    i++;
+                }
+                i = i + 1;
+                count = 0;
+                j = i;
+                set.clear();
+            }
+        }
+        return maxcount;
+    }
+}
