@@ -18,6 +18,32 @@ class Solution {
 }
 
 
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode previous = new ListNode();
+        ListNode current = new ListNode();
+        ListNode trans = new ListNode();
+
+        if(head == null){
+            return null;
+        }
+
+        previous = null;
+        current = head;
+        trans = current.next;
+
+        while(trans != null){
+            current.next = previous;
+            previous = current;
+            current = trans;
+            trans = trans.next;
+        }
+        current.next = previous;        
+        return current;
+    }
+}
+
+
 
 
 class Solution {
