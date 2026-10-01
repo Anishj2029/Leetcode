@@ -1,0 +1,30 @@
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+
+        ArrayList<Integer> set = new ArrayList<>();
+        ArrayList<Integer> ans = new ArrayList<>();
+
+  
+        for(int num : nums1){
+            set.add(num);
+        }
+
+
+        for(int num : nums2){
+            if(set.contains(num)){
+                ans.add(num);
+                set.remove(Integer.valueOf(num));
+            }
+        }
+
+
+        int[] arr = new int[ans.size()];
+
+        int i = 0;
+        for(int num : ans){
+            arr[i++] = num;
+        }
+
+        return arr;
+    }
+}
