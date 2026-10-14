@@ -1,0 +1,45 @@
+class Solution {
+    public int[] findXSum(int[] nums, int k, int x) {
+
+        int n = nums.length;
+        int[] res = new int[n - k + 1];
+
+        for (int i = 0; i <= n - k; i++) {
+
+            int j = i;
+            HashMap<Integer, Integer> map = new HashMap<>();
+
+            
+            while (j < i + k) {
+                map.put(nums[j], map.getOrDefault(nums[j], 0) + 1);
+                j++;
+            }
+
+           
+            List<Map.Entry<Integer, Integer>> list =
+                    new ArrayList<>(map.entrySet());
+
+           
+            list.sort((a, b) -> {
+                if (!a.getValue().equals(b.getValue())) {
+                    return b.getValue() - a.getValue();
+                }
+                return b.getKey() - a.getKey();
+            });
+
+            int sum = 0;
+
+            for (int p = 0; p < Math.min(x, list.size()); p++) {
+                int num = list.get(p).getKey();
+                int freq = list.get(p).getValue();
+
+                sum += num * freq;
+            }
+
+    
+            res[i] = sum;
+        }
+
+        return res;
+    }
+}
