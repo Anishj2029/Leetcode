@@ -1,0 +1,79 @@
+class Solution {
+    public int sortableIntegers(int[] nums) {
+
+        int n = nums.length;
+        int sum = 0;
+
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for(int i = 1; i <= n ; i++){
+            if(n % i == 0){
+                list.add(i);
+            }
+        }
+
+        for(int i = 0; i < list.size() ; i++){
+            boolean res = checkissorted(nums);
+            if(res){
+                sum = sum + list.get(i);
+            }else{
+                boolean rel = cansorted(nums, list.get(i));
+                if(rel){
+                    sum = sum + list.get(i);
+                }
+            }
+        }
+        return sum;
+    }   
+    public boolean cansorted(int nums[], int k) {
+        int n = nums.length;
+        int prevMax = Integer.MIN_VALUE;
+
+        for (int start = 0; start < n; start += k) {
+
+            int end = start + k;
+            int dec = 0;
+
+            int min = nums[start];
+            int max = nums[start];
+
+            for (int j = start; j < end; j++) {
+                min = Math.min(min, nums[j]);
+                max = Math.max(max, nums[j]);
+            }
+
+   
+            for (int j = start; j < end - 1; j++) {
+                if (nums[j] > nums[j + 1]) {
+                    dec++;
+                }
+            }
+
+            if (nums[end - 1] > nums[start]) {
+                dec++;
+            }
+
+            if (dec > 1) {
+                return false;
+            }
+
+            if (prevMax > min) {
+                return false;
+            }
+
+            prevMax = max;
+        }
+
+        return true;
+    }
+    
+
+    public boolean checkissorted(int nums[]){
+        for(int i = 0; i < nums.length -1; i++){
+            if(nums[i] > nums[ i+1]){
+                return false;
+            }
+        }
+        return true;
+    }
+}
