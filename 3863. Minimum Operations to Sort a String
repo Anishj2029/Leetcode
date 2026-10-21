@@ -1,0 +1,54 @@
+class Solution {
+    public int minOperations(String s) {
+        int max = -9999;
+        int maxpos = 0;
+        int min = 9999;
+        int minpos = 0;
+        int n = s.length();
+
+        if(check(s)){
+        for(int i = 0; i < s.length() ; i++){
+            int val = (int)s.charAt(i);
+            if (val >= max) {
+                max = val;
+                maxpos = i;
+            }
+
+            if (val < min) {
+                min = val;
+                minpos = i;
+            }
+        }
+        
+        if(s.length() == 2){
+            return -1;
+        }
+
+        if(maxpos == 0 && minpos == n -1){
+            return 3;
+        }else if(maxpos == n - 1 && minpos == 0){
+            return 1;
+        }else if(minpos == 0 && maxpos != n - 1){
+            return 1;
+        }else if(maxpos == n - 1 && minpos != 0){
+            return 1;
+        }else if(maxpos != n - 1 && minpos != 0){
+            return 2;
+        }
+        return -1;
+        }else{
+            return 0;
+        }
+    }
+
+    public boolean check(String s){
+        for(int i = 0; i < s.length() -1 ; i++){
+            int val1 = (int)s.charAt(i);
+            int val2 = (int)s.charAt(i + 1);
+            if(val1 > val2){
+                return true;
+            }
+        }
+        return false;
+    }
+}
