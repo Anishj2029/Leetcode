@@ -1,0 +1,28 @@
+class Solution {
+    public int minimumSumSubarray(List<Integer> nums, int l, int r) {
+        int min = -1;
+
+        for (int window = l; window <= r; window++) {
+            int i = 0;
+            int j = i + window;
+            int sum = 0;
+
+            while (j <= nums.size()) {
+                sum = 0;
+
+                for (int k = i; k < j; k++) {
+                    sum = sum + nums.get(k);
+                }
+
+                if (sum > 0 && (min == -1 || sum < min)) {
+                    min = sum;
+                }
+
+                i++;
+                j = i + window;
+            }
+        }
+
+        return min;
+    }
+}
